@@ -5,6 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    open-pull-requests-limit: 15
     groups:
       github-actions-updates:
         applies-to: version-updates
@@ -16,6 +17,7 @@ updates:
     directory: "/.github/workflows"
     schedule:
       interval: weekly
+    open-pull-requests-limit: 15 
     groups:
       workflow-updates:
         applies-to: version-updates
@@ -27,6 +29,7 @@ updates:
     directory: "/docs"
     schedule:
       interval: weekly
+    open-pull-requests-limit: 15  
     groups:
       doc-updates:
         applies-to: version-updates
@@ -37,7 +40,8 @@ updates:
   - package-ecosystem: uv
     directory: "/"
     schedule:
-      interval: weekly
+      interval: daily
+    open-pull-requests-limit: 15 
     versioning-strategy: lockfile-only
     allow:
       - dependency-type: "all"
