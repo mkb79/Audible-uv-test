@@ -7,11 +7,6 @@ updates:
     open-pull-requests-limit: 15
     groups:
       github-actions-updates:
-        applies-to: version-updates
-        patterns:
-          - "*"
-      github-actions-security-updates:
-        applies-to: security-updates
         patterns:
           - "*"
   - package-ecosystem: pip
@@ -21,11 +16,6 @@ updates:
     open-pull-requests-limit: 15
     groups:
       workflow-updates:
-        applies-to: version-updates
-        patterns:
-          - "*"
-      workflow-security-updates:
-        applies-to: security-updates
         patterns:
           - "*"
   - package-ecosystem: pip
@@ -35,11 +25,6 @@ updates:
     open-pull-requests-limit: 15
     groups:
       doc-updates:
-        applies-to: version-updates
-        patterns:
-          - "*"
-      doc-security-updates:
-        applies-to: security-updates
         patterns:
           - "*"
   - package-ecosystem: uv
@@ -48,12 +33,10 @@ updates:
       interval: daily
     open-pull-requests-limit: 15
     versioning-strategy: lockfile-only
-    # allow:
-      # - dependency-type: "all"
     groups:
-      pip-version-updates:
+      version-updates:
         applies-to: version-updates
         dependency-type: development
-      pip-security-updates:
+      security-updates:
         applies-to: security-updates
         dependency-type: production
