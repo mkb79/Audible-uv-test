@@ -1,5 +1,4 @@
 version: 2
-enable-beta-ecosystems: true
 updates:
   - package-ecosystem: github-actions
     directory: "/"
@@ -51,3 +50,10 @@ updates:
     versioning-strategy: lockfile-only
     allow:
       - dependency-type: "all"
+    groups:
+      pip-version-updates:
+        applies-to: version-updates
+        dependency-type: development
+      pip-security-updates:
+        applies-to: security-updates
+        dependency-type: production
