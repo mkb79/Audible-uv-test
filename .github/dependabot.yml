@@ -33,10 +33,10 @@ updates:
       interval: daily
     open-pull-requests-limit: 15
     versioning-strategy: lockfile-only
-    groups:
-      version-updates:
-        applies-to: version-updates
-        dependency-type: development
-      security-updates:
-        applies-to: security-updates
-        dependency-type: production
+#   groups:
+#     version-updates:
+#       applies-to: version-updates
+#       dependency-type: development
+#     security-updates:
+#       applies-to: security-updates
+#       dependency-type: production
