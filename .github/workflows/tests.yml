@@ -11,29 +11,12 @@ concurrency:
   # Use github.run_id on main branch
   # Use github.event.pull_request.number on pull requests, so it's unique per pull request
   # Use github.ref on other branches, so it's unique per branch
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_id || github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  check-pull-request:
-    name: Check pull requests and abort non-external
-    permissions:
-      actions: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: chek for abort
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.actions.cancelWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId
-            });
-
   tests:
-    needs: check-pull-request
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     name: ${{ matrix.session }} ${{ matrix.python }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
