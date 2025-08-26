@@ -17,7 +17,7 @@ jobs:
       tag: ${{ steps.check-version.outputs.tag }}
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2
 
@@ -62,7 +62,7 @@ jobs:
 
       - name: Publish the release notes
         id: create-release
-        uses: release-drafter/release-drafter@v6.0.0
+        uses: release-drafter/release-drafter@v6.1.0
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
           tag: ${{ steps.check-version.outputs.tag }}
@@ -79,7 +79,7 @@ jobs:
       id-token: write
     steps:
       - name: Download build package artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: dist
           path: dist
